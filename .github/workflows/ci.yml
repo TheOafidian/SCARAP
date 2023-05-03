@@ -2,7 +2,7 @@ name: CI
 
 on: 
     push:
-        branches: ["main", "development", "feature/github-actions"]
+        branches: ["master", "development", "feature/github-actions"]
     schedule: 
         - cron: '0 0 * * 1' 
 env:
