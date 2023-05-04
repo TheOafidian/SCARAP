@@ -8,3 +8,4 @@ src/scarap/tests
 build/
 dist/
 *egg-info/
+__pycache__
