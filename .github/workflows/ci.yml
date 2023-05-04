@@ -27,6 +27,7 @@ jobs:
       uses: mig4/setup-bats@v1
       with:
         bats-version: 1.2.1
+    - uses: brokenpip3/setup-bats-libs@0.0.2
     
     - name: Add conda to system path
       run: |
