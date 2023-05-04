@@ -28,6 +28,9 @@ jobs:
       with:
         bats-version: 1.2.1
     - uses: brokenpip3/setup-bats-libs@0.0.2
+      with: 
+        path-support: test/test_helper/bats-support
+        path-assert : test/test_helper/bats-assert
     
     - name: Add conda to system path
       run: |
