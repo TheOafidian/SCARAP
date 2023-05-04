@@ -41,5 +41,5 @@ jobs:
         conda env update --file environment.yml --name base
     - name: Test with bats
       run: |
-       ls test-helper/bats-assert
+       ls test_helper/bats-assert
        bats -r .
