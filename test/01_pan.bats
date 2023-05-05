@@ -12,12 +12,10 @@ setup() {
     
 @test "Can run with faapaths" {
     scarap pan $DOUT/faapaths.txt $DOUT/pan -t 16 # with faapaths
-    rm -r $DOUT/pan
 }
 
 @test "Can run with faafolder" {
     scarap pan $DIN $DOUT/pan -t 16 # with faafolder
-    rm -r $DOUT/pan
 }
 
 @test "Running with redundant genes should give error" {
