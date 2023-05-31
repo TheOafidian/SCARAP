@@ -3,7 +3,7 @@
 setup() {
     load 'test_helper/bats-support/load'
     load 'test_helper/bats-assert/load'
-    din=testdata/data
+    din=testdata/data/02_hierarchical
     dout=testresults    # Prepare data
     mkdir -p $dout
     ls $din/faas_hiertest/*.faa.gz > $dout/faapaths_hiertest.txt

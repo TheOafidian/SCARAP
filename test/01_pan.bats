@@ -3,7 +3,7 @@
 setup() {
     load 'test_helper/bats-support/load'
     load 'test_helper/bats-assert/load'
-    DIN=testdata/data/faas
+    DIN=testdata/data/01_pan/faas
     DOUT=testresults
     # Prepare data
     mkdir -p $DOUT
