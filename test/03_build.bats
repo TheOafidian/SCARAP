@@ -15,6 +15,5 @@ setup() {
 }
 
 teardown() {
-    echo "hey"
-    #rm -r $dout
+    rm -r $dout
 }
