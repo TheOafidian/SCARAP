@@ -1048,15 +1048,15 @@ def infer_pangenome(faafins, splitstrategy, dout, threads):
     dio_fastas = f"{dout}/superfamilies/fastas"
     gather_orthogroup_sequences(pangenome, faafins, dio_fastas)
 
-    logging.info("counting splitable superfamilies")
+    logging.info("counting splittable superfamilies")
     os.makedirs(f"{dout}/tmp", exist_ok = True)
     pangenome = pangenome.groupby("orthogroup")
     orthogroups = pangenome.aggregate({"genome": split_possible})
-    splitable = orthogroups[orthogroups.genome].index.tolist()
-    pangenome_splitable = [pan for name, pan in pangenome if name in splitable]
-    pangenome_splitable.sort(key = lambda pan: len(pan.index), reverse = True)
-    n = len(pangenome_splitable)
-    logging.info(f"found {n} splitable superfamilies")
+    splittable = orthogroups[orthogroups.genome].index.tolist()
+    pangenome_splittable = [pan for name, pan in pangenome if name in splittable]
+    pangenome_splittable.sort(key = lambda pan: len(pan.index), reverse = True)
+    n = len(pangenome_splittable)
+    logging.info(f"found {n} splittable superfamilies")
     
     if n == 0:
   
@@ -1070,12 +1070,12 @@ def infer_pangenome(faafins, splitstrategy, dout, threads):
     
     logging.info("splitting superfamilies")
     with ProcessPoolExecutor(max_workers = threads // tpp) as executor:
-        pangenome_splitable = executor.map(split_superfamily, 
-            pangenome_splitable, [splitstrategy] * n, [dio_fastas] * n, 
+        pangenome_splittable = executor.map(split_superfamily, 
+            pangenome_splittable, [splitstrategy] * n, [dio_fastas] * n, 
             [tpp] * n, [f"{dout}/tmp"] * n)
     print("")
-    pangenome = pd.concat(list(pangenome_splitable) +
-        [pan for name, pan in pangenome if not name in splitable])
+    pangenome = pd.concat(list(pangenome_splittable) +
+        [pan for name, pan in pangenome if not name in splittable])
         
     logging.info("assigning names to the gene families")
     nametable = pd.DataFrame({"old": pangenome["orthogroup"].unique()})
