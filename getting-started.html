@@ -1,0 +1,210 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started &mdash; SCARAP 0.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=6c02275b"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/js/custom.js?v=8fe80478"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Package modules" href="scarap.html" />
+    <link rel="prev" title="Installing SCARAP" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SCARAP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing SCARAP</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#obtaining-data">Obtaining data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inferring-a-pangenome">Inferring a pangenome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inferring-a-core-genome">Inferring a core genome</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subsampling-a-set-of-genomes">Subsampling a set of genomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-a-supermatrix-for-a-set-of-genomes">Building a “supermatrix” for a set of genomes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scarap.html">Package modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feedback.html">Feedback</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SCARAP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+<section id="obtaining-data">
+<h2>Obtaining data<a class="headerlink" href="#obtaining-data" title="Link to this heading"></a></h2>
+<p>SCARAP works mainly with faa files: amino acid sequences of all (predicted) genes in a genome assembly. You can obtain faa files in at least three ways:</p>
+<ul class="simple">
+<li><p>You can run a gene prediction tool like <a class="reference external" href="https://github.com/hyattpd/Prodigal">Prodigal</a> on genome assemblies of your favorite strains, or a complete annotation pipeline such as <a class="reference external" href="https://github.com/tseemann/prokka">Prokka</a> or <a class="reference external" href="https://github.com/oschwengers/bakta">Bakta</a>.</p></li>
+<li><p>You can search your favorite taxon on <a class="reference external" href="https://www.ncbi.nlm.nih.gov/datasets/genome/">NCBI genome</a> and manually download assemblies in the following way: click on an assembly, click “Download”, select “Protein (FASTA)” as file type and click “Download” again.</p></li>
+<li><p>Given a list of assembly accession numbers (i.e. starting with GCA/GCF), you can use <a class="reference external" href="https://github.com/kblin/ncbi-genome-download/">ncbi-genome-download</a> to download the corresponding faa files.</p></li>
+</ul>
+<p>Given a list of accessions in a file called <code class="docutils literal notranslate"><span class="pre">accessions.txt</span></code>, you can use ncbi-genome-download to download faa files as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncbi</span><span class="o">-</span><span class="n">genome</span><span class="o">-</span><span class="n">download</span> <span class="o">-</span><span class="n">P</span> \
+<span class="o">--</span><span class="n">assembly</span><span class="o">-</span><span class="n">accessions</span> <span class="n">accessions</span><span class="o">.</span><span class="n">txt</span> \
+<span class="o">--</span><span class="n">section</span> <span class="n">genbank</span> \
+<span class="o">--</span><span class="n">formats</span> <span class="n">protein</span><span class="o">-</span><span class="n">fasta</span> \
+<span class="n">bacteria</span>
+</pre></div>
+</div>
+</section>
+<section id="inferring-a-pangenome">
+<h2>Inferring a pangenome<a class="headerlink" href="#inferring-a-pangenome" title="Link to this heading"></a></h2>
+<p>If you want to infer the pangenome of a set of genomes, you only need their faa files (fasta files with protein sequences) as input. If the faa files are stored in a folder <code class="docutils literal notranslate"><span class="pre">faas</span></code>, you can infer the pangenome using 16 threads by running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scarap</span> <span class="n">pan</span> <span class="o">./</span><span class="n">faas</span> <span class="o">./</span><span class="n">pan</span> <span class="o">-</span><span class="n">t</span> <span class="mi">16</span>
+</pre></div>
+</div>
+<p>The pangenome will be stored in <code class="docutils literal notranslate"><span class="pre">pan/pangenome.tsv</span></code>
+The pangenome is stored in a “long format”: a table with the columns gene, genome and orthogroup.</p>
+</section>
+<section id="inferring-a-core-genome">
+<h2>Inferring a core genome<a class="headerlink" href="#inferring-a-core-genome" title="Link to this heading"></a></h2>
+<p>If you want to infer the core genome of a set of genomes directly, without inferring the full pangenome first, you can also do this with SCARAP. The reason you might want to do this, is because it is faster and because you sometimes don’t need more than the core genome (e.g. when you are planning to infer a phylogeny).</p>
+<p>You can infer the core genome, given a set of faa files in a folder <code class="docutils literal notranslate"><span class="pre">faas</span></code>, in the following way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scarap</span> <span class="n">core</span> <span class="o">./</span><span class="n">faas</span> <span class="o">./</span><span class="n">core</span> <span class="o">-</span><span class="n">t</span> <span class="mi">16</span>
+</pre></div>
+</div>
+<p>The core genome will be stored in <code class="docutils literal notranslate"><span class="pre">core/genes.tsv</span></code>.</p>
+</section>
+<section id="subsampling-a-set-of-genomes">
+<h2>Subsampling a set of genomes<a class="headerlink" href="#subsampling-a-set-of-genomes" title="Link to this heading"></a></h2>
+<p>If you have a (large) dataset of genomes that you wish to subsample in a
+representative way, you can do this using the <code class="docutils literal notranslate"><span class="pre">sample</span></code> module. You
+will need to precompute the pangenome or core genome to do this; SCARAP
+calculates average amino acid identity (AAI) or core amino acid identity
+(cAAI) values in the subsampling process, and it uses the single-copy
+orthogroups from a pan- or core genome to do this.</p>
+<p>For example, if you want to sample 100 genomes given a set of faa files
+in a folder <code class="docutils literal notranslate"><span class="pre">faas</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scarap</span> <span class="n">core</span> <span class="o">./</span><span class="n">faas</span> <span class="o">./</span><span class="n">core</span> <span class="o">-</span><span class="n">t</span> <span class="mi">16</span>
+<span class="n">scarap</span> <span class="n">sample</span> <span class="o">./</span><span class="n">faas</span> <span class="o">./</span><span class="n">core</span><span class="o">/</span><span class="n">genes</span><span class="o">.</span><span class="n">tsv</span> <span class="o">./</span><span class="n">representatives</span> <span class="o">-</span><span class="n">m</span> <span class="mi">100</span> <span class="o">-</span><span class="n">t</span> <span class="mi">16</span>
+</pre></div>
+</div>
+<p>The representative genomes will be stored in
+<code class="docutils literal notranslate"><span class="pre">representatives/seeds.txt</span></code>.</p>
+<p>Important remark: by default, the per-gene amino acid identity values
+are estimated from alignment scores per column by MMseqs (<a class="reference external" href="https://github.com/soedinglab/MMseqs2/wiki#how-does-mmseqs2-compute-the-sequence-identity">alignment
+mode
+1</a>).
+For AAI values &gt; 90%, these estimations are on average smaller than the
+exact values. It is possible to calculate exact AAI values by adding the
+<code class="docutils literal notranslate"><span class="pre">--exact</span></code> option to the sample module, but this will be slower.</p>
+<p>You can also sample genomes based on average nucleotide identity (ANI)
+or core nucleotide identity (cANI) values. In that case, you need to
+supply nucleotide sequences of predicted genes, e.g. in a folder
+<code class="docutils literal notranslate"><span class="pre">ffns</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scarap</span> <span class="n">core</span> <span class="o">./</span><span class="n">faas</span> <span class="o">./</span><span class="n">core</span> <span class="o">-</span><span class="n">t</span> <span class="mi">16</span>
+<span class="n">scarap</span> <span class="n">sample</span> <span class="o">./</span><span class="n">ffns</span> <span class="o">./</span><span class="n">core</span><span class="o">/</span><span class="n">genes</span><span class="o">.</span><span class="n">tsv</span> <span class="o">./</span><span class="n">representatives</span> <span class="o">-</span><span class="n">m</span> <span class="mi">100</span> <span class="o">-</span><span class="n">t</span> <span class="mi">16</span>
+</pre></div>
+</div>
+</section>
+<section id="building-a-supermatrix-for-a-set-of-genomes">
+<h2>Building a “supermatrix” for a set of genomes<a class="headerlink" href="#building-a-supermatrix-for-a-set-of-genomes" title="Link to this heading"></a></h2>
+<p>You can build a concatenated alignment of core genes (“supermatrix”) for
+a set of genomes using the <code class="docutils literal notranslate"><span class="pre">concat</span></code> module.</p>
+<p>Let’s say you want to build a supermatrix of 100 core genes for a set of
+genomes, with faa files given in a folder <code class="docutils literal notranslate"><span class="pre">faas</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scarap</span> <span class="n">core</span> <span class="o">./</span><span class="n">faas</span> <span class="o">./</span><span class="n">core</span> <span class="o">-</span><span class="n">m</span> <span class="mi">100</span> <span class="o">-</span><span class="n">t</span> <span class="mi">16</span>
+<span class="n">scarap</span> <span class="n">concat</span> <span class="o">./</span><span class="n">faas</span> <span class="o">./</span><span class="n">core</span><span class="o">/</span><span class="n">genes</span><span class="o">.</span><span class="n">tsv</span> <span class="o">./</span><span class="n">supermatrix</span> <span class="o">-</span><span class="n">t</span> <span class="mi">16</span>
+</pre></div>
+</div>
+<p>The amino acid supermatrix will be saved in
+<code class="docutils literal notranslate"><span class="pre">supermatrix/supermatrix_aas.fasta</span></code>.</p>
+<p>If you want to produce a nucleotide-level supermatrix, this can be
+achieved by giving a folder with ffn files (nucleotide sequences of
+predicted genes) as an additional argument:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scarap</span> <span class="n">concat</span> <span class="o">./</span><span class="n">faas</span> <span class="o">./</span><span class="n">core</span><span class="o">/</span><span class="n">genes</span><span class="o">.</span><span class="n">tsv</span> <span class="o">./</span><span class="n">supermatrix</span> <span class="o">-</span><span class="n">n</span> <span class="o">./</span><span class="n">ffns</span> <span class="o">-</span><span class="n">t</span> <span class="mi">16</span>
+</pre></div>
+</div>
+<p>The nucleotide-level supermatrix will be saved in
+<code class="docutils literal notranslate"><span class="pre">supermatrix/supermatrix_nucs.fasta</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="Installing SCARAP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scarap.html" class="btn btn-neutral float-right" title="Package modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Stijn Wittouck.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
